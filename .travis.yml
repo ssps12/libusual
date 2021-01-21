@@ -1,10 +1,6 @@
 dist: focal
 language: c
-arch:
-  - amd64
-  - arm64-graviton2
-virt: lxd
-group: edge
+
 jobs:
   include:
   - env: configure_args=''
@@ -17,6 +13,46 @@ jobs:
   - dist: xenial
   - dist: bionic
   - env: CFLAGS='-fno-sanitize-recover=all -fsanitize=undefined -fsanitize-address-use-after-scope -fno-sanitize=shift'
+  - env: configure_args=''
+    arch: arm64-graviton2
+    virt: lxd
+    group: edge
+  - env: configure_args='--enable-cassert'
+    arch: arm64-graviton2
+    virt: lxd
+    group: edge
+  - env: configure_args='--enable-cassert'
+    arch: arm64-graviton2
+    virt: lxd
+    group: edge
+  - env: configure_args='--enable-cassert --with-uregex'
+    arch: arm64-graviton2
+    virt: lxd
+    group: edge
+  - env: configure_args='CPPFLAGS=-DUSE_SYSTEMD LIBS=-lsystemd'
+    arch: arm64-graviton2
+    virt: lxd
+    group: edge
+  - compiler: clang
+    arch: arm64-graviton2
+    virt: lxd
+    group: edge
+  - dist: trusty
+    arch: arm64-graviton2
+    virt: lxd
+    group: edge
+  - dist: xenial
+    arch: arm64-graviton2
+    virt: lxd
+    group: edge
+  - dist: bionic
+    arch: arm64-graviton2
+    virt: lxd
+    group: edge
+  - env: CFLAGS='-fno-sanitize-recover=all -fsanitize=undefined -fsanitize-address-use-after-scope -fno-sanitize=shift'
+    arch: arm64-graviton2
+    virt: lxd
+    group: edge
 before_install: |
   set -e
   sudo apt-get update
