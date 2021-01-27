@@ -61,10 +61,10 @@ install: |
   pkgs="libevent-dev"
   case $configure_args in *USE_SYSTEMD*) pkgs="$pkgs libsystemd-dev";; esac
   sudo apt-get -y install $pkgs
-script: |
-  set -e
-  ./autogen.sh
-  ./configure --prefix=$HOME/install --enable-werror $configure_args
-  make
-  make check
-  make install
+script:
+  - set -e
+  - ./autogen.sh
+  - ./configure --prefix=$HOME/install --enable-werror $configure_args
+  - make
+  - make check
+  - make install
